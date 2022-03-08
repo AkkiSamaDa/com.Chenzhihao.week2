@@ -23,7 +23,7 @@
             </div>
             <!-- 密码 -->
             <div class="login-text" id="pass_error">
-                <input id="passwords"  onchange="password_errors();" type="password" placeholder="密码（6-16位，可填字母、数字、下划线）">
+                <input id="passwords"  onchange="password_errors();" type="password" placeholder="密码（至少8位，可填字母、数字、下划线）">
                 <div class="error" >密码格式不规范</div>
             </div>
             <!-- 重复密码 -->
