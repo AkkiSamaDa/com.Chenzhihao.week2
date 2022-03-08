@@ -23,7 +23,7 @@ function password_errors(){
     console.log(div);
     // let x = div.length;
     // console.log(x);
-    let re = /\w{6,16}$/;
+    let re = /\w{8}$/;
     if(re.test(div)) errorCase.classList.remove("haserror");
     else errorCase.classList.add("haserror");
 }
