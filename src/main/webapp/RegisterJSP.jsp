@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
+<html>
 <head>
     <title>Register -- by ChenZhihao</title>
     <style>
@@ -12,18 +12,18 @@
     </style>
 </head>
 <body>
-    <form action="" class="login-box">
+    <form action="register" class="login-box">
         <!-- 注册界面内容块 -->
         <div class="login-content">
             <!-- 昵称 -->
             <div class="login-text" id="name_error">
-                <input id="names" type="text" placeholder="昵称">
+                <input id="names" name="names" type="text" placeholder="昵称">
                 <!-- 错误消息 -->
                 <div class="error">该昵称已被使用</div>
             </div>
             <!-- 密码 -->
             <div class="login-text" id="pass_error">
-                <input id="passwords"  onchange="password_errors();" type="password" placeholder="密码（6-16位，可填字母、数字、下划线）">
+                <input id="passwords"  name="passwords" onchange="password_errors();" type="password" placeholder="密码（至少8位，可填字母、数字、下划线）">
                 <div class="error" >密码格式不规范</div>
             </div>
             <!-- 重复密码 -->
@@ -35,7 +35,7 @@
             <div class="login-text" id="phone_error">
                 <div class="phone-areas clearfix">
                     <div class="phonenum">
-                        <input id="phonenum"  onchange="phonenum_errors();"type="text" placeholder="填写常用手机号码">
+                        <input id="phonenum"  name="phonenum" onchange="phonenum_errors();" type="text" placeholder="填写常用手机号码">
                     </div>
                 </div>
                 <div class="error">请填写正确的手机号码</div>
@@ -44,7 +44,7 @@
             <div class="login-text" id="mail_error">
                 <div class="mail-catch ">
                     <div class="mail">
-                        <input id="eMail" onchange="e_mail_errors();" type="text" placeholder="邮箱">
+                        <input id="eMail" name="eMail" onchange="e_mail_errors();" type="text" placeholder="邮箱">
                     </div>
                     <div class="pass">
                         <button>验证邮箱</button>
@@ -63,11 +63,11 @@
                 </label>
             </div>
             <!-- 注册按钮 -->
-            <div>
-                <button  class="login-buttom" id="register" type = "button" onclick="window.location.href = ''">
-                    注册
-                </button>
-            </div>
+<%--            <div>--%>
+<%--                <button  class="login-buttom" id="register" type = "button" onclick="window.location.href = ''">--%>
+            <input type="submit" value="Register"/>
+<%--                </button>--%>
+<%--            </div>--%>
         </div>
     </form>
 </body>
