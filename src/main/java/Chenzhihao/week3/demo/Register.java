@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 
 public class Register extends HttpServlet{
         @Override
+
         protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("names");
         String password = req.getParameter("passwords");

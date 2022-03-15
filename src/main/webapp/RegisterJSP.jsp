@@ -29,6 +29,7 @@
                 <input id="passwords"  name="passwords" onchange="password_errors();" type="password" placeholder="密码（至少8位，可填字母、数字、下划线）">
                 <div class="error" >密码格式不规范</div>
             </div>
+
             <!-- 重复密码 -->
             <div class="login-text" id="pass_error2">
                 <input id="passwords2"  onchange="password_errors2();" type="password" placeholder="请确认密码">
