@@ -9,9 +9,6 @@
         .login-text.haserror .error{
             display: block;
         }
-
-
-
     </style>
 </head>
 <body>
@@ -72,6 +69,11 @@
             <input type="submit" value="Register"/>
 <%--                </button>--%>
 <%--            </div>--%>
+        </div>
+        <div>
+            <a href="config">
+                点击跳转
+            </a>
         </div>
     </form>
 </body>

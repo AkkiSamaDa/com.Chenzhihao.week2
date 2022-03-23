@@ -3,14 +3,58 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
-        <servlet>
+
+    <context-param>
+        <param-name>driver</param-name>
+        <param-value>com.microsoft.sqlserver.jdbc.SQLServerDriver</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>url</param-name>
+        <param-value>jdbc:sqlserver://localhost; DatabaseName = userdb</param-value>
+    </context-param>
+
+
+    <context-param>
+        <param-name>username</param-name>
+        <param-value>sa</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>password</param-name>
+        <param-value>8828.</param-value>
+    </context-param>
+
+
+    <servlet>
             <servlet-name>register</servlet-name>
             <servlet-class>Chenzhihao.week3.demo.Register</servlet-class>
         </servlet>
         <servlet-mapping>
-
-
             <servlet-name>register</servlet-name>
             <url-pattern>/register</url-pattern>
+        </servlet-mapping>
+
+
+        <servlet>
+            <servlet-name>ConfigDemo</servlet-name>
+            <servlet-class>Chenzhihao.week3.demo.ConfigDemoServlet</servlet-class>
+
+            <init-param>
+                <param-name>username</param-name>
+                <param-value>Chenzhihao</param-value>
+            </init-param>
+
+            <init-param>
+                <param-name>id</param-name>
+                <param-value>2020211001001116</param-value>
+            </init-param>
+        </servlet>
+
+
+
+        <servlet-mapping>
+            <servlet-name>ConfigDemo</servlet-name>
+            <url-pattern>/config</url-pattern>
         </servlet-mapping>
 </web-app>
