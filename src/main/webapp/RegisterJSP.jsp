@@ -1,17 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<html>
-<head>
-    <title>Register -- by ChenZhihao</title>
-    <style>
-        .login-text .error{
-            display: none;
-        }
-        .login-text.haserror .error{
-            display: block;
-        }
-    </style>
-</head>
-<body>
+<%@include file="header.jsp"%>
     <form action="register" class="login-box">
         <!-- 注册界面内容块 -->
         <div class="login-content">
@@ -76,6 +64,6 @@
             </a>
         </div>
     </form>
-</body>
-<script type="text/javascript" src="Register.js"></script>
-</html>
+
+<%@include file="footer.jsp"%>
+
