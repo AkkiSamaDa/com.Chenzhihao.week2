@@ -13,7 +13,11 @@ import java.util.Objects;
 
 public class Register extends HttpServlet{
     Connection dbConn = null;
-    static int id = 10005;
+    static int id = 10015;
+
+
+
+
     @Override
     public void init() throws ServletException {
         super.init();
@@ -33,6 +37,11 @@ public class Register extends HttpServlet{
             System.out.println("false!!!");
         }
     }
+
+
+
+
+
 
         @Override
 
