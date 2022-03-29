@@ -11,7 +11,7 @@ import java.util.Objects;
 
 public class login extends HttpServlet {
     Connection dbConn = null;
-
+//
 
     @Override
     public void init() throws ServletException {
@@ -44,7 +44,10 @@ public class login extends HttpServlet {
         String username = req.getParameter("names");
         String password = req.getParameter("passwords");
 
-        System.out.println("66666666666666666666666");
+
+
+
+        System.out.println("66666666666666");
         try {
 
             Statement stmt = dbConn.createStatement();
