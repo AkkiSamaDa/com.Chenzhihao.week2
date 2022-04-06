@@ -1,5 +1,14 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="header.jsp"%>
+<%
+
+    if  (request.getRequestDispatcher("massage") != null){
+        out.print("<h3>" + request.getAttribute("message") + "</h3>");
+    }
+
+%>
+
+
     <form action="login">
         <!-- 昵称 -->
         <div class="login-text" id="name_error">

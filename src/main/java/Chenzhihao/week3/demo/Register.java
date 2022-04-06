@@ -66,40 +66,40 @@ public class Register extends HttpServlet{
                 stmt.setString(6,null);
                 stmt.executeUpdate();
                 System.out.println("nsdawsdwasdwada");
+                resp.sendRedirect("login.jsp");
+//                Statement stmt2 = dbConn.createStatement();
+//                ResultSet selected_table = stmt2.executeQuery("select * from usertable");
+//                PrintWriter writer = resp.getWriter();
 
-                Statement stmt2 = dbConn.createStatement();
-                ResultSet selected_table = stmt2.executeQuery("select * from usertable");
-                PrintWriter writer = resp.getWriter();
-
-                writer.println("<table border = "+"1"+">");
-                writer.println("<tr>");
-                writer.println("<td>username</td>"
-                        + "<td>password</td>"
-                        + "<td>email</td>"
-                        + "<td>gender</td>"
-                        + "<td>Birthdate</td>");
-                writer.println("</tr>");
-                while(selected_table.next()){
-                    String use = selected_table.getString("username");
-                    String pas = selected_table.getString("password");
-                    String ema = selected_table.getString("email");
-                    String gen = selected_table.getString("gender");
-                    String bir = selected_table.getString("Birthdate");
-                    writer.println("<tr>");
-                    writer.println("<td>" + use + "</td>"
-                            + "<td>" + pas + "</td>"
-                            + "<td>" + ema + "</td>"
-                            + "<td>" + gen + "</td>"
-                            + "<td>" + bir + "</td>");
-                    writer.println("</tr>");
-                }
-                writer.println("</table>");
-                writer.close();
-//                writer.println("<br> username: " + username);
-//                writer.println("<br> passwords: " + password);
-//                writer.println("<br> email: " + email);
-//                writer.println("<br> Phonenum: " + Pname);
-                writer.close();
+//                writer.println("<table border = "+"1"+">");
+//                writer.println("<tr>");
+//                writer.println("<td>username</td>"
+//                        + "<td>password</td>"
+//                        + "<td>email</td>"
+//                        + "<td>gender</td>"
+//                        + "<td>Birthdate</td>");
+//                writer.println("</tr>");
+//                while(selected_table.next()){
+//                    String use = selected_table.getString("username");
+//                    String pas = selected_table.getString("password");
+//                    String ema = selected_table.getString("email");
+//                    String gen = selected_table.getString("gender");
+//                    String bir = selected_table.getString("Birthdate");
+//                    writer.println("<tr>");
+//                    writer.println("<td>" + use + "</td>"
+//                            + "<td>" + pas + "</td>"
+//                            + "<td>" + ema + "</td>"
+//                            + "<td>" + gen + "</td>"
+//                            + "<td>" + bir + "</td>");
+//                    writer.println("</tr>");
+//                }
+//                writer.println("</table>");
+//                writer.close();
+////                writer.println("<br> username: " + username);
+////                writer.println("<br> passwords: " + password);
+////                writer.println("<br> email: " + email);
+////                writer.println("<br> Phonenum: " + Pname);
+//                writer.close();
 
             } catch (SQLException e) {
                 e.printStackTrace();

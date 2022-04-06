@@ -51,30 +51,22 @@ public class login extends HttpServlet {
         try {
 
             Statement stmt = dbConn.createStatement();
+            String sql = "select id,username,password from usertable where username = '" + username +"'" + "and password = '" + password +"'" ;
+            ResultSet selected_table = stmt.executeQuery(sql);
+            if (selected_table.next()){
 
-            ResultSet selected_table = stmt.executeQuery("select id,username,password from usertable");
-            boolean flag = false;
-            PrintWriter writer = resp.getWriter();
-            while(selected_table.next()){
-                String id = selected_table.getString("id");
-                String use = selected_table.getString("username");
-                String pas = selected_table.getString("password");
+                req.setAttribute("id", selected_table.getString("id"));
+                req.setAttribute("use", selected_table.getString("username"));
+                req.setAttribute("pas", selected_table.getString("password"));
 
-                if(Objects.equals(username, use) && Objects.equals(pas, password)){
-
-                    writer.println("Login Successful! <br>");
-                    writer.println("Welcome!   " + username );
-                    flag = true;
-                    break;
-                }
-            }
-            if(!flag){
-                writer.println("Login fail!");
+                req.getRequestDispatcher("userinfo.jsp").forward(req,resp);
+                } else{
+                req.setAttribute("message","Username or Password  Error!!!");
+                req.getRequestDispatcher("login.jsp").forward(req,resp);
 
             }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+            } catch (SQLException ex) {
+            ex.printStackTrace();
         }
 
     }
