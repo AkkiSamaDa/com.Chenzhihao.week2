@@ -1,5 +1,8 @@
 package Chenzhihao.week5.demo;
 
+import Chenzhihao.dao.UserDao;
+import Chenzhihao.model.User;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +19,8 @@ public class login extends HttpServlet {
     @Override
     public void init() throws ServletException {
         super.init();
+
+        dbConn = (Connection)getServletContext().getAttribute("com");
         String driver = getServletContext().getInitParameter("driver");
         String url = getServletContext().getInitParameter("url");
         String password = getServletContext().getInitParameter("password");
@@ -39,42 +44,52 @@ public class login extends HttpServlet {
     @Override
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setCharacterEncoding("UTF-8");
-        resp.setContentType("text/html");
-        String username = req.getParameter("names");
-        String password = req.getParameter("passwords");
-
-
-
-
-        System.out.println("66666666666666");
-        try {
-
-            Statement stmt = dbConn.createStatement();
-            String sql = "select id,username,password from usertable where username = '" + username +"'" + "and password = '" + password +"'" ;
-            ResultSet selected_table = stmt.executeQuery(sql);
-            if (selected_table.next()){
-
-                req.setAttribute("id", selected_table.getString("id"));
-                req.setAttribute("use", selected_table.getString("username"));
-                req.setAttribute("pas", selected_table.getString("password"));
-
-                req.getRequestDispatcher("userinfo.jsp").forward(req,resp);
-                } else{
-                req.setAttribute("message","Username or Password  Error!!!");
-                req.getRequestDispatcher("login.jsp").forward(req,resp);
-
-            }
-            } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-
+        req.getRequestDispatcher("login.jsp").forward(req,resp);
     }
 
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doGet(req, resp);
+        resp.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html");
+        String username = req.getParameter("names");
+        String password = req.getParameter("passwords");
+//        System.out.println("66666666666666");
+//        try {
+//
+//            Statement stmt = dbConn.createStatement();
+//            String sql = "select id,username,password from usertable where username = '" + username +"'" + "and password = '" + password +"'" ;
+//            ResultSet selected_table = stmt.executeQuery(sql);
+//            if (selected_table.next()){
+//
+//                req.setAttribute("id", selected_table.getString("id"));
+//                req.setAttribute("use", selected_table.getString("username"));
+//                req.setAttribute("pas", selected_table.getString("password"));
+//
+//                req.getRequestDispatcher("userinfo.jsp").forward(req,resp);
+//            } else{
+//                req.setAttribute("message","Username or Password  Error!!!");
+//                req.getRequestDispatcher("login.jsp").forward(req,resp);
+//
+//            }
+//        } catch (SQLException ex) {
+//            ex.printStackTrace();
+//        }
+        UserDao userDao = new UserDao();
+        try {
+            User user = userDao.findByUsernamePassword(dbConn,username,password);
+            if (user != null){
+                req.setAttribute("user",user);
+                req.getRequestDispatcher("userinfo.jsp").forward(req,resp);
+            }else{
+                req.setAttribute("message","Username or Password  Error!!!");
+                req.getRequestDispatcher("login.jsp").forward(req,resp);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
 
