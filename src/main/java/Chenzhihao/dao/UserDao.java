@@ -2,17 +2,21 @@ package Chenzhihao.dao;
 
 import Chenzhihao.model.User;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Date;
 import java.util.List;
 
 public class UserDao implements IUserDao{
     @Override
     public boolean saveUser(Connection con, User user) throws SQLException {
-        return false;
+        String username = user.getUsername();
+        String password = user.getPassword();
+        String email = user.getEmail();
+        String in = "insert into usertable values ('"+username+"','"+password+"','"+email+"')";
+        PreparedStatement ps = null;
+        ps = con.prepareStatement(in);
+        ps.executeUpdate();
+        return true;
     }
 
     @Override
@@ -22,6 +26,19 @@ public class UserDao implements IUserDao{
 
     @Override
     public int updateUser(Connection con, User user) throws SQLException {
+        String username = user.getUsername();
+        String password = user.getPassword();
+        String email = user.getEmail();
+        String sql = "update usertable set password = '"+password+"',email = '"+email
+                +"' where username = '"+username+"'";
+        try {
+            PreparedStatement ps = null;
+            ps = con.prepareStatement(sql);
+            ps.executeUpdate();
+            System.out.println("TWILIGHT");
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
         return 0;
     }
 

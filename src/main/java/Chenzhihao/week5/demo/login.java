@@ -4,9 +4,7 @@ import Chenzhihao.dao.UserDao;
 import Chenzhihao.model.User;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
@@ -44,7 +42,7 @@ public class login extends HttpServlet {
     @Override
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("login.jsp").forward(req,resp);
+        req.getRequestDispatcher("WEB-INF/views/login.jsp").forward(req,resp);
     }
 
 
@@ -79,11 +77,32 @@ public class login extends HttpServlet {
         try {
             User user = userDao.findByUsernamePassword(dbConn,username,password);
             if (user != null){
-                req.setAttribute("user",user);
-                req.getRequestDispatcher("userinfo.jsp").forward(req,resp);
+
+                String rememberMe = req.getParameter("rememberMe");
+                if (rememberMe!=null && rememberMe.equals("1")){
+                    Cookie usernameCookie = new Cookie("cUsername", user.getUsername());
+                    Cookie passwordCookie = new Cookie("cPassword", user.getPassword());
+                    Cookie rememberMeCookie = new Cookie("cRememberMe", user.getPassword());
+
+
+                    usernameCookie.setMaxAge(5);
+                    passwordCookie.setMaxAge(5);
+                    rememberMeCookie.setMaxAge(5);
+                    resp.addCookie(usernameCookie);
+                    resp.addCookie(passwordCookie);
+                    resp.addCookie(rememberMeCookie);
+                }
+//                Cookie c = new Cookie("sessionid",""+ user.getId());
+//                c.setMaxAge(10*60);
+//                resp.addCookie(c);
+                HttpSession session = req.getSession();
+                System.out.println("session id-->"+session.getId());
+                session.setMaxInactiveInterval(10);
+                session.setAttribute("user",user);
+                req.getRequestDispatcher("WEB-INF/views/userinfo.jsp").forward(req,resp);
             }else{
                 req.setAttribute("message","Username or Password  Error!!!");
-                req.getRequestDispatcher("login.jsp").forward(req,resp);
+                req.getRequestDispatcher("WEB-INF/views/login.jsp").forward(req,resp);
             }
         } catch (SQLException e) {
             e.printStackTrace();

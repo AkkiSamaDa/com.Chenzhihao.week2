@@ -31,7 +31,7 @@
                             border-top-width:0px;
                             border-color:black;" align="center">
      <a style="color:white;" href="home">Home</a>
-   - <a style="color:white;" href="login.jsp">Login</a>
+   - <a style="color:white;" href="login">Login</a>
    - <a style="color:white;" href="productList">Product</a>
    - <a style="color:white;" href="#">FAQ</a>
    - <a style="color:white;" href="#">About</a>
@@ -42,8 +42,14 @@
    Welcome,<font size="18" color="red"> Guest</font>
    </font></td> </tr>
   <tr height="20"><td align="right">
-   <br> <a href="#">Logout</a>
-  <br><a href="#">My Cart</a><br/>
+    <%
+        if(session.getAttribute("user")!=null){
+
+    %>
+   <br> <a href="logout">Logout</a>
+
+      <% }%>
+      <br><a href="#">My Cart</a><br/>
 <a href="RegisterJSP.jsp">Register Here</a>
   </td></tr>
  </table>
