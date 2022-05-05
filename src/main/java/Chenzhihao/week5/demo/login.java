@@ -52,27 +52,6 @@ public class login extends HttpServlet {
         resp.setContentType("text/html");
         String username = req.getParameter("names");
         String password = req.getParameter("passwords");
-//        System.out.println("66666666666666");
-//        try {
-//
-//            Statement stmt = dbConn.createStatement();
-//            String sql = "select id,username,password from usertable where username = '" + username +"'" + "and password = '" + password +"'" ;
-//            ResultSet selected_table = stmt.executeQuery(sql);
-//            if (selected_table.next()){
-//
-//                req.setAttribute("id", selected_table.getString("id"));
-//                req.setAttribute("use", selected_table.getString("username"));
-//                req.setAttribute("pas", selected_table.getString("password"));
-//
-//                req.getRequestDispatcher("userinfo.jsp").forward(req,resp);
-//            } else{
-//                req.setAttribute("message","Username or Password  Error!!!");
-//                req.getRequestDispatcher("login.jsp").forward(req,resp);
-//
-//            }
-//        } catch (SQLException ex) {
-//            ex.printStackTrace();
-//        }
         UserDao userDao = new UserDao();
         try {
             User user = userDao.findByUsernamePassword(dbConn,username,password);
@@ -92,9 +71,6 @@ public class login extends HttpServlet {
                     resp.addCookie(passwordCookie);
                     resp.addCookie(rememberMeCookie);
                 }
-//                Cookie c = new Cookie("sessionid",""+ user.getId());
-//                c.setMaxAge(10*60);
-//                resp.addCookie(c);
                 HttpSession session = req.getSession();
                 System.out.println("session id-->"+session.getId());
                 session.setMaxInactiveInterval(10);

@@ -47,8 +47,6 @@
     </servlet-mapping>
 
 
-    //
-
     <servlet>
         <servlet-name>ConfigDemo</servlet-name>
         <servlet-class>Chenzhihao.week3.demo.ConfigDemoServlet</servlet-class>
@@ -84,6 +82,9 @@
     </welcome-file-list>
 
 
+
+
+
     <filter>
         <filter-name>AuthFilter</filter-name>
         <filter-class>Chenzhihao.filter.AuthFilter</filter-class>
@@ -94,13 +95,15 @@
     </filter-mapping>
 
     <filter>
-        <filter-name>HelloServlet</filter-name>
+        <filter-name>HelloFilter</filter-name>
         <filter-class>Chenzhihao.filter.HelloFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>HelloFilter</filter-name>
         <url-pattern>/hello</url-pattern>
     </filter-mapping>
+
+
     <filter>
         <filter-name>LoggerFilter</filter-name>
         <filter-class>Chenzhihao.filter.LoggerFilter</filter-class>

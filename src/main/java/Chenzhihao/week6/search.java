@@ -15,7 +15,7 @@ public class search extends HttpServlet {
         String txt = req.getParameter("txt");
         String search = req.getParameter("search");
         if(txt.length() == 0){
-            resp.sendRedirect("index.jsp");
+            resp.sendRedirect("WEB-INF/views/index.jsp");
             System.out.println("Sdawd");
         }else{
             if (Objects.equals(search, "baidu")){
