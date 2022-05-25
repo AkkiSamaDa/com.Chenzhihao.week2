@@ -41,4 +41,7 @@ public class Product {
                 + ",picture=" + picture + ",price="+price+"]";
     }
 
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
+    }
 }

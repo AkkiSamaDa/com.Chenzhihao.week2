@@ -1,6 +1,7 @@
 package Chenzhihao.controller;
 
 import Chenzhihao.dao.ProductDao;
+import Chenzhihao.model.Category;
 import Chenzhihao.model.Product;
 
 import javax.servlet.*;
@@ -11,23 +12,28 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet(name = "ProductListServlet", value = "/ProductListServlet")
-public class ProductListServlet extends HttpServlet {
+@WebServlet(name = "ProductDetailsServlet", value = "/ProductDetailsServlet")
+public class ProductDetailsServlet extends HttpServlet {
     Connection con = null;
     public void init()  {
         con = (Connection)getServletContext().getAttribute("con");
     }
-    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        try{
-            ProductDao productDao = new ProductDao();
-            List<Product> productList = productDao.findAll(con);
-            request.setAttribute("productList",productList);
-        }catch (SQLException e){
+        int id = request.getParameter("id") != null?Integer.parseInt(request.getParameter("id")):0;
+        ProductDao productDao = new ProductDao();
+        if(id == 0){
+            return;
+        }
+        List<Category> categoryList = Category.findAllCategory(con);
+        request.setAttribute("categoryList",categoryList);
+        Product product = null;
+        try {
+            product = productDao.findById(id,con);
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        String path = "/WEB-INF/Views/admin/productList.jsp";
+        request.setAttribute("p",product);
+        String path = "/WEB-INF/views/productDetails.jsp";
         request.getRequestDispatcher(path).forward(request,response);
     }
 
