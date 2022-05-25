@@ -16,4 +16,6 @@ public class login {
     public void setPassword(String password){
         this.password = password;
     }
+
+
 }

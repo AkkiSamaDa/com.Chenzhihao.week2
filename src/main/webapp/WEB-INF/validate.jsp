@@ -12,12 +12,12 @@
 </head>
 <body>
 <%--Todo 1: Use <jsp:useBean> to create a Login bean instance in request scope --%>
-    <jsp:useBean id="login" class="com.example.lab2chenzhihao2020211001001116.login" scope="request"/>
+<jsp:useBean id="login" class="Chenzhihao.lab2.login" scope="request"/>
 
 <%--Todo 2: Use <jsp:setProperty> to set  beans' property username and password--%>
-    <jsp:setProperty property="*" name="login"/>
+<jsp:setProperty property="*" name="login"/>
 <%
-   //todo 3: use if check username is admin and ppassword is admin
+    //todo 3: use if check username is admin and ppassword is admin
 %>
 
 <%
@@ -26,18 +26,18 @@
 
 <%--todo 4: use jsp:forward to welcome.jsp page--%>
 
-    <jsp:forward page="welcome.jsp"/>
-    <%--todo 5: else part{ --%>
+<jsp:forward page="welcome.jsp"/>
+<%--todo 5: else part{ --%>
 <%}
-    else {
+else {
 
 // todo 6: print username or password error message
     out.println("username or password error message");
 %>
-    <%--todo 7: use jsp:include login.jsp page --%>
-    <jsp:include page="login.jsp"/>
-    <%--todo 8: close else --%>
+<%--todo 7: use jsp:include login.jsp page --%>
+<jsp:include page="login.jsp"/>
+<%--todo 8: close else --%>
 <%
-}%>
+    }%>
 </body>
 </html>
