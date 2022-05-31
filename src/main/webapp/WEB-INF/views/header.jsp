@@ -98,11 +98,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="shop-menu clearfix pull-right">
 							<ul class="nav navbar-nav">
 								<li><a href="<%=basePath%>accountDetails"><i class="fa fa-user"></i> Account</a></li>
-								
-
-
-
-
 								<li><a href="<%=basePath%>cart"><i class="fa fa-shopping-cart"></i> Cart</a></li>
 								<li><a href="<%=basePath%>register"><i class="fa fa-crosshairs"></i> Register</a></li>
 								<li><a href="<%=basePath%>login"><i class="fa fa-lock"></i> Login</a></li>
